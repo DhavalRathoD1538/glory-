@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I'm Sorry 🧸</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at center, #fff4e6, #f8b500);
+    }
+
+    /* 🌸 Floating Flower Background */
+    .flowers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .flowers span {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') no-repeat center/cover;
+      animation: float 12s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .flowers span:nth-child(1) { left: 5%; animation-delay: 0s; }
+    .flowers span:nth-child(2) { left: 15%; animation-delay: 2s; }
+    .flowers span:nth-child(3) { left: 30%; animation-delay: 4s; }
+    .flowers span:nth-child(4) { left: 45%; animation-delay: 1s; }
+    .flowers span:nth-child(5) { left: 60%; animation-delay: 3s; }
+    .flowers span:nth-child(6) { left: 75%; animation-delay: 5s; }
+    .flowers span:nth-child(7) { left: 90%; animation-delay: 2s; }
+
+    .bear {
+      width: 160px;
+      height: 160px;
+      background-color: #8d5524;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      animation: bounce 2s infinite ease-in-out;
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    .bear.spin {
+      animation: none;
+      transform: rotate(360deg);
+    }
+
+    .bear::before,
+    .bear::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: #8d5524;
+      border-radius: 50%;
+      top: -30px;
+      animation: earWiggle 2s infinite ease-in-out;
+    }
+
+    .bear::before { left: -30px; }
+    .bear::after { right: -30px; }
+
+    @keyframes earWiggle {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .eyes {
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+    }
+
+    .eye {
+      width: 15px;
+      height: 15px;
+      background-color: black;
+      border-radius: 50%;
+      animation: blink 5s infinite;
+    }
+
+    .eye.wink {
+      animation: wink 4s infinite;
+    }
+
+    @keyframes blink {
+      0%, 95%, 100% { height: 15px; }
+      96%, 98% { height: 3px; }
+    }
+
+    @keyframes wink {
+      0%, 85%, 100% { height: 15px; width: 15px; }
+      86%, 90% { height: 2px; width: 10px; }
+    }
+
+    .tear {
+      position: absolute;
+      width: 6px;
+      height: 10px;
+      background: #80d0ff;
+      top: 62px;
+      left: 63px;
+      border-radius: 50%;
+      animation: tearDrop 3s infinite ease-in;
+    }
+
+    @keyframes tearDrop {
+      0% { opacity: 0; transform: translateY(0); }
+      30% { opacity: 1; }
+      100% { transform: translateY(20px); opacity: 0; }
+    }
+
+    .nose {
+      position: absolute;
+      top: 75px;
+      left: 50%;
+      width: 20px;
+      height: 15px;
+      background-color: black;
+      border-radius: 50% / 40%;
+      transform: translateX(-50%);
+    }
+
+    .message {
+      font-size: 2.5rem;
+      color: #6b240c;
+      margin-top: 30px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      animation: floatIn 2s ease-out forwards 1.5s, pulseText 3s infinite 4s;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .message.shake {
+      animation: shake 0.5s;
+    }
+
+    @keyframes floatIn {
+      to {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    @keyframes pulseText {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .heart {
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+      border-radius: 50% 50% 0 0;
+      animation: pulse 1s infinite ease-in-out;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .heart::after,
+    .heart::before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 15px;
+    }
+
+    .heart.burst {
+      animation: burst 0.5s ease forwards;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+      50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
+      100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+    }
+
+    @keyframes burst {
+      0% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+      50% { transform: translateX(-50%) rotate(-45deg) scale(1.6); opacity: 1; }
+      100% { transform: translateX(-50%) rotate(-45deg) scale(0); opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 🌸 Animated Background Flowers -->
+  <div class="flowers">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- 🧸 Teddy Bear -->
+  <div class="bear" id="bear">
+    <div class="eyes">
+      <div class="eye"></div>
+      <div class="eye wink"></div>
+    </div>
+    <div class="tear"></div>
+    <div class="nose"></div>
+  </div>
+
+  <!-- 💬 Apology Message -->
+  <div class="message" id="message">
+    I'm Really Sorry 😢<br>
+    MAHI JI, I KNOW IT'S MY MISTAKE.<br>
+    IT WILL NEVER BE DONE AGAIN.
+  </div>
+
+  <!-- ❤️ Heart -->
+  <div class="heart" id="heart"></div>
+
+  <script>
+    const bear = document.getElementById('bear');
+    const heart = document.getElementById('heart');
+    const message = document.getElementById('message');
+
+    bear.addEventListener('click', () => {
+      bear.classList.add('spin');
+      setTimeout(() => bear.classList.remove('spin'), 600);
+    });
+
+    heart.addEventListener('click', () => {
+      heart.classList.add('burst');
+      setTimeout(() => heart.classList.remove('burst'), 600);
+    });
+
+    message.addEventListener('click', () => {
+      message.classList.add('shake');
+      setTimeout(() => message.classList.remove('shake'), 500);
+    });
+  </script>
+</body>
+</html>
